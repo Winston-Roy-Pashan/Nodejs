@@ -15,12 +15,12 @@ module.exports = function (mongoose) {
     var UserSchema = new Schema({
         name: {
             type: String,
-            required:[true,'invalid name']
+            required: [true, 'invalid name']
         },
         email: {
             type: String,
             required: [true, 'Please enter your valid email address!!!'],
-            unique:true
+            unique: true
         },
         gender: {
             type: String
@@ -28,29 +28,29 @@ module.exports = function (mongoose) {
         phone: {
             type: String,
             validate: {
-                validator: function(v) {
+                validator: function (v) {
                     return /\d{10}/.test(v);
                 },
                 message: props => `${props.value} is not a valid phone number!`
-              },
-              required: [true, 'User phone number required'],
-              unique:true
+            },
+            required: [true, 'User phone number required'],
+            unique: true
         },
         Employee_code: {
             type: String,
-            required:true
+            required: true
         },
         userType: {
-            type: String  , 
-            enum: ['superadmin', 'admin','user']
+            type: String,
+            enum: ['superadmin', 'admin', 'user']
         },
-        username:{
-            type:String,
-            required:true
+        username: {
+            type: String,
+            required: true
         },
         password: {
             type: String,
-            required:true
+            required: true
         },
         profilePic: {
             type: String

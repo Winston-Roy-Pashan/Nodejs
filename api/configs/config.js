@@ -17,11 +17,11 @@ var config = {
         mongo: {
             dbURL: process.env.MONGO_URL,
             options: {
-                
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true,
-                    useCreateIndex: true
-                
+
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true
+
             },
         },
         root: require("path").normalize(__dirname + "/.."),
@@ -48,7 +48,7 @@ var config = {
 
     staging: {
         mongo: {
-            dbURL:process.env.MONGO_URL,
+            dbURL: process.env.MONGO_URL,
             options: {
                 useNewUrlParser: true,
                 useUnifiedTopology: true

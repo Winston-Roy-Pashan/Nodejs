@@ -10,7 +10,8 @@
 const express = require("express");
 module.exports = function (app, mongoose, utils, config, constants, upload, logger) {
     var userCtrl = require("../controllers/user")(mongoose, utils, config, constants, logger);
-   
+    var authenticateToken = require("../auth/bearer").isAuthenticated;
+
     var userRouter = express.Router();
 
     //api to add user
@@ -19,11 +20,14 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to get user count
     userRouter.get("/getCount", userCtrl.getUsersCount);
 
-   //api to login
+    //api to login
     userRouter.post("/login", userCtrl.loginUser);
 
+     //api to chnage password
+     userRouter.post("/changePassword",authenticateToken, userCtrl.changePassword);
+
     //api to edit user data
-    userRouter.put("/:userId",upload.single('profilePic'), userCtrl.updateUser);
+    userRouter.put("/:userId", upload.single('profilePic'), userCtrl.updateUser);
 
     //api to list user data
     userRouter.get("/", userCtrl.getUsers);

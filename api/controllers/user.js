@@ -58,14 +58,12 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } else {
                 return utils.sendCustomError(req, res, "HTTP_ERR", "USER_EXISTS")
             }
-
         } catch (error) {
             console.log("____________Err", error)
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
 
     }
-
 
     userCtrl.loginUser = async function (req, res) {
         try {
@@ -75,21 +73,47 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
             query.password = await utils.encryptPassword(req.body.password);
             let data = await Users.getData(query);
-            // console.log("********data", data)
+            logger.info("user logged in ..", data);
             if (!data) {
                 return utils.sendCustomError(req, res, "HTTP_ERR", "USER_NOT_EXISTS")
             } else {
                 data.token = await utils.generateBearerToken();
                 data.tokenExpiry = await utils.generateExpiryTime();
-
                 data = await Users.updateDataById(data._id, { token: data.token, tokenExpiry: data.tokenExpiry });
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             }
-
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
+    }
 
+    userCtrl.changePassword = async function (req, res) {
+        try {
+            console.log("req user ........", req.user);
+            var userObj = {};
+            userObj.mail = req.user.email;
+            if (req.body.newpassword) {
+                userObj.password = req.body.newpassword;
+            }
+            if (req.body.reEnterNewpassword) {
+                userObj.reEnterNewpassword = req.body.reEnterNewpassword;
+            }
+            console.log("new password..........",userObj.password);
+            console.log("re enter new password..........",userObj.reEnterNewpassword);
+            if (userObj.password == userObj.reEnterNewpassword) {
+                userObj.password = await utils.encryptPassword(userObj.password);
+                let data = await Users.updateDataById(req.user._id, userObj);
+                if (!data) {
+                    return utils.sendCustomError(req, res, "HTTP_ERR", "USER_NOT_EXISTS")
+                } else {
+                    return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+                }
+            } else {
+                return utils.sendCustomError(req, res, "INVALID", "WRONG_PASSWORD")
+            }
+        } catch (error) {
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
     }
 
     userCtrl.getUser = async function (req, res) {
@@ -100,16 +124,12 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } else {
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             }
-
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
-
-
     }
 
     userCtrl.getUsers = async function (req, res) {
-
         try {
             var queryObj = {};
             queryObj.query = {};
@@ -117,9 +137,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 queryObj.query.name = req.query.name;
             }
             console.log(queryObj)
-            queryObj.options = {
-
-            };
+            queryObj.options = {};
             if (req.query.limit) {
                 queryObj.options.limit = JSON.parse(req.query.limit)
             }
@@ -138,15 +156,11 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             let data = await Users.getLists(queryObj);
             let count = await Users.getCount(queryObj.query);
             return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS", count);
-
-
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
-
-
-
     }
+
     userCtrl.updateUser = async function (req, res) {
         try {
             var userObj = {};
@@ -185,11 +199,9 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } else {
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             }
-
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
-
     }
 
     userCtrl.deleteUser = async function (req, res) {
@@ -200,14 +212,12 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } else {
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             }
-
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
-
     }
+
     userCtrl.getUsersCount = async function (req, res) {
-        logger.info("*********")
         try {
             let data = await Users.aggregate([
                 {
@@ -216,15 +226,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                         count: { $sum: 1 }
                     }
                 }
-
-
             ]);
-            console.log("---data", data)
             logger.info("----data", data)
             return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
-
         } catch (error) {
-            console.log("------err", error)
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
     }

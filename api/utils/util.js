@@ -20,7 +20,7 @@ const MSG = constants.text;
 var servicePath = config.root + "/services/";
 var services = {};
 fs.readdirSync(servicePath).forEach(function (file) {
-    // logger.info("Loading services : " + file);
+    logger.info("Loading services : " + file);
     services[file] = require(servicePath + file);
 });
 module.exports = {
@@ -29,11 +29,9 @@ module.exports = {
         console.log("-----httpStatus", httpStatus, '----code', code, '----message', message.errors, '---extraMsg', extraMsg)
         //setting http status code for response      
         httpStatus = (typeof httpStatus === "undefined") ? 400 : CODE[httpStatus];
-
         if (!code) {
             code = "ERR";
         }
-
         if (!message) {
             message = "ERR";
         }
@@ -65,7 +63,6 @@ module.exports = {
             });
     },
 
-
     sendAuthError: function (req, res, code, message) {
         res.status(CODE[code])
             .json({
@@ -76,7 +73,7 @@ module.exports = {
                 }
             });
     },
-    
+
     sendResponse: function (req, res, data, code, message, count) {
         var skip;
         var limit;
@@ -100,7 +97,7 @@ module.exports = {
         if (err && err.code === 11000) {
             return module.exports.sendCustomError(req, res, "CONFLICT", "DB_DUPLICATE", "DB_DUPLICATE");
         } else {
-            return module.exports.notifyError(req, res, "HTTP_ERR","DB_ERR", err);
+            return module.exports.notifyError(req, res, "HTTP_ERR", "DB_ERR", err);
         }
     },
 
@@ -108,7 +105,6 @@ module.exports = {
         if (err) {
             return module.exports.sendDBError(req, res, err);
         } else {
-
             if (!data) {
                 data = {};
             }
@@ -124,69 +120,20 @@ module.exports = {
             return module.exports.sendDBCallbackErrs(req, res, err, data);
         }
     },
+
     encryptPassword: function (password) {
         var ciphertext = CryptoJS.HmacSHA1(password, config.passwordSecret).toString();
         return ciphertext;
 
     },
-    generateToken: function (payload) {
-        var token = jwt.encode(payload, config.jwtTokenSecret);
-        return token;
-    },
-    generateRefreshToken: function (payload) {
-        payload.isRefresh = true;
-        var token = jwt.encode(payload, config.jwtTokenSecret);
-        return token;
-    },
+
     generateExpiryTime: function () {
         var currentDate = new Date();
         var tokenExpiry = new Date(currentDate.setMinutes(currentDate.getMinutes() + config.tokenExpiry));
         return tokenExpiry;
 
     },
-    generateRefreshTokenExpiry: function () {
-        var currentDate = new Date();
-        var tokenExpiry = new Date(currentDate.setMinutes(currentDate.getMinutes() + config.refreshTokenExpiry));
-        return tokenExpiry;
-    },
-    verifyToken: function (token, cb) {
-        var payload;
-        try {
-            payload = jwt.decode(token, config.jwtTokenSecret);
-            console.log("payload.........",payload)
-            cb(null, payload)
-        } catch (err) {
-            return cb(err, null)
-        }
-    },
-    verifyToken: function (token) {
-        var payload;
-        try {
-            payload = jwt.decode(token, config.jwtTokenSecret);
-            return payload;
-        } catch (err) {
-            return err;
-        }
-    },
     generateBearerToken: function () {
         return uuidv4();
-    },
-    generateOtp: function () {
-        var otp = otpGenerator.generate(6, { upperCase: false, specialChars: false, alphabets: false });
-        return otp;
-    },
-    generateOtpExpiryTime: function () {
-        var currentDate = new Date();
-        var otpExpiry = new Date(currentDate.setMinutes(currentDate.getMinutes() + config.otpExpiry));
-        return otpExpiry;
-    },
-
-    sendMail: function (name, email, otp) {
-        console.log("*************")
-        services.email.sendMail(name, email, otp, function (err, data) {
-            console.log("err", err, "data", data)
-        })
     }
-
-
 };

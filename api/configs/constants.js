@@ -40,7 +40,9 @@ module.exports = {
         "NO_PARAMS": "Parameter Missing !",
         "NOT_AUTHERIZED": "Not Authorized",
         "INV_CRED": "Invalid Credentials.",
-        "USER_EXISTS":"Entered user already exists"
+        "USER_EXISTS": "Entered User Already Exists",
+        "USER_NOT_EXISTS":"User Not Exists",
+        "WRONG_PASSWORD":"Entered Wrong Password"
     }
 };
 
