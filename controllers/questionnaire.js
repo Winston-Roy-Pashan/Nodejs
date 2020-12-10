@@ -67,7 +67,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 let questionnaireData = await Questionnaires.getData(query);
                 console.log("questionnaire data.........", questionnaireData)
                 if (questionnaireData) {
-                    return utils.sendCustomError(req, res, "CONFLICT", "USER_EXISTS")
+                    return utils.sendCustomError(req, res, "CONFLICT", "QUESTIONNAIRE_EXISTS")
                 } else {
                     let data = await Questionnaires.addData(questionnaireObj);
                     console.log("________________data", data);
@@ -83,7 +83,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
     }
 
-    //Preview Questionnaire
+    //get ALL  Questionnaire
     questionnaireCtrl.getQuestionnaires = async function (req, res) {
         try {
             if (req.user && req.user.userType === 'Admin') {
@@ -113,6 +113,29 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 let data = await Questionnaires.getLists(queryObj);
                 let count = await Questionnaires.getCount(queryObj.query);
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS", count);
+            } else {
+                return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
+            }
+        } catch (error) {
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+    }
+
+        //  Preview Questionnaire
+    questionnaireCtrl.previewQuestionnaires = async function (req, res) {
+        try {
+            if (req.user && req.user.userType === 'Admin') {
+                var questionnaireObj = {};
+                if (req.body.questionnaireId) {
+                    questionnaireObj._id = req.body.questionnaireId;
+                }
+                 console.log("questionnaireObj._id,,,,,,",questionnaireObj._id)
+                 console.log("req.body.questionnaireId,,,,,,",req.body.questionnaireId)
+               
+               // queryObj.selectFields = '-mailBody';
+                let data = await Questionnaires.getDataById(questionnaireObj._id);
+                console.log("questionnaiere data..........",data)
+                return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             } else {
                 return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
             }
@@ -162,6 +185,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     let Policydata = await PolicyStatus.addData(policyStatusObj);
                     await utils.sendMail(data.name,data.email, intro, sub, link);
                 });
+                return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             } else {
                 return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
             }
@@ -274,8 +298,9 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
             queryObj.populate = ([{ path: 'userId',select: 'name email employeeCode' }])
 
-            queryObj.selectFields = 'questionnaireId Policy_Accept';
+            queryObj.selectFields = 'questionnaireId policyAccept';
             let data = await PolicyStatus.getLists(queryObj);
+            console.log("policy data..........",data)
 
             var xlsData = [];
             if (data.length > 0) {
@@ -285,7 +310,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     console.log("Current Element of questionnaireId------>", element.questionnaireId);
                    var Questionnaireid= element.questionnaireId === undefined ? 'none' :element.questionnaireId;
                     console.log("Current Element of questionnaireId------>", Questionnaireid);
-                    xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Employee_code": element.userId.employeeCode ,"Policy_Id":element.questionnaireId,"Policy_Status":element.Policy_Accept});
+                    xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Employee_code": element.userId.employeeCode ,"Policy_Id":element.questionnaireId,"Policy_Status":element.policyAccept});
                 });
             }
             try {
@@ -310,6 +335,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } catch (err) {
                 console.error(err);
             }
+           // return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
         } else {
            //  utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
         }

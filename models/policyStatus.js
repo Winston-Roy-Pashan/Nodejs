@@ -21,7 +21,7 @@ module.exports = function (mongoose) {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Questionnaires'
         },
-        Policy_Accept: {
+        policyAccept: {
             type:Boolean,
             default:false
         },

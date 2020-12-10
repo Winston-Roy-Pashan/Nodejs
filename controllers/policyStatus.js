@@ -27,7 +27,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 if (req.body.questionnaireId) {
                     policyStatusObj.questionnaireId = req.body.questionnaireId;
                 }
-                 policyStatusObj.Policy_Accept = true;
+                 policyStatusObj.policyAccept = true;
                 var query = {};
                 query.userId = req.user._id;
                 let policyStatusData = await PolicyStatus.getData(query);

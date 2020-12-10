@@ -44,7 +44,8 @@ module.exports = {
         "USER_NOT_EXISTS":"User Not Exists",
         "WRONG_PASSWORD":"Entered Wrong Password",
         "ACCEPTED":"You are accepted the Policy",
-        "ALREADY_ACCEPTED":"You are already accepted the Policy"
+        "ALREADY_ACCEPTED":"You are already accepted the Policy",
+        "QUESTIONNAIRE_EXISTS":"Entered Questionnaire Already Exists"
     }
 };
 

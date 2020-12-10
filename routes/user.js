@@ -32,8 +32,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
       * @apiGroup Users
       * @apiDescription API to get all users
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users
+      *     curl -i http://localhost:4000/api/v1/users
+      * @apiSampleRequest http://localhost:4000/api/v1/users
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -93,7 +93,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to get details of user data
     userRouter.get("/:userId", userCtrl.getUser);
     /**
-      * @api {get} /users/:userId  Get all user based on Id
+      * @api {get} /users/5fd1e62b4cd3c851bd15c2d6  Get user based on Id
       * @apiName Get user
       * @apiGroup Users
       * @apiDescription API to get user based on Id
@@ -103,8 +103,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           "_id": "5facbe780e43085622fe5c82"
           }
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/:userId
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/:userId
+      *     curl -i http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
+      * @apiSampleRequest http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -141,7 +141,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to delete details of user data
     userRouter.delete("/:userId", authenticateToken, userCtrl.deleteUser);
     /**
-      * @api {delete} /users/:userId   Delete user based on Id
+      * @api {delete} /users/5fd1e62b4cd3c851bd15c2d6   Delete user based on Id
       * @apiName Delete user
       * @apiGroup Users
       * @apiDescription API to Delete user based on Id
@@ -151,8 +151,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           "_id": "5facbe780e43085622fe5c82"
           }
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/:userId
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/:userId
+      *     curl -i http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
+      * @apiSampleRequest http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -212,8 +212,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
       }
   *
   * @apiExample {curl} Example usage:
-  *     curl -i http://localhost:4000/policy.robosoftin.com/users/addSuperAdmin
-  * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/addSuperAdmin
+  *     curl -i http://localhost:4000/api/v1/users/addSuperAdmin
+  * @apiSampleRequest http://localhost:4000/api/v1/users/addSuperAdmin
   * @apiSuccessExample Success-Response:
   *     HTTP/1.1 200 OK
   *     {
@@ -279,8 +279,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/addAdmin
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/addAdmin
+      *     curl -i http://localhost:4000/api/v1/users/addAdmin
+      * @apiSampleRequest http://localhost:4000/api/v1/users/addAdmin
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -343,8 +343,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/login
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/login
+      *     curl -i http://localhost:4000/api/v1/users/login
+      * @apiSampleRequest http://localhost:4000/api/v1/users/login
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -408,8 +408,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/changePassword
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/changePassword
+      *     curl -i http://localhost:4000/api/v1/users/changePassword
+      * @apiSampleRequest http://localhost:4000/api/v1/users/changePassword
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -470,8 +470,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/sendPasswordUpdateLink
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/sendPasswordUpdateLink
+      *     curl -i http://localhost:4000/api/v1/users/sendPasswordUpdateLink
+      * @apiSampleRequest http://localhost:4000/api/v1/users/sendPasswordUpdateLink
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -518,7 +518,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to edit admin data
     userRouter.put("/addAdmin/:userId", authenticateToken, userCtrl.updateUser);
     /**
-      * @api {put} /users/addAdmin/:userId Update Admin Data
+      * @api {put} /users/addAdmin/5fd1e62b4cd3c851bd15c2d6 Update Admin Data
       * @apiName UpdateAdmin
       * @apiGroup Users
       * @apiDescription API to Update Admin
@@ -536,8 +536,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/addAdmin/:userId
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/addAdmin/:userId
+      *     curl -i http://localhost:4000/api/v1/users/addAdmin/5fd1e62b4cd3c851bd15c2d6
+      * @apiSampleRequest http://localhost:4000/api/v1/users/addAdmin/5fd1e62b4cd3c851bd15c2d6
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -585,7 +585,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to edit superadmin data
     userRouter.put("/addSuperAdmin/:userId", authenticateToken, userCtrl.updateUser);
     /**
-      * @api {put} /users/addSuperAdmin/:userId Update Super Admin Data
+      * @api {put} /users/addSuperAdmin/5fd1e62b4cd3c851bd15c2d6 Update Super Admin Data
       * @apiName UpdateSuperAdmin
       * @apiGroup Users
       * @apiDescription API to Update SuperAdmin
@@ -603,8 +603,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
           }
       *
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/addSuperAdmin/:userId
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/addSuperAdmin/:userId
+      *     curl -i http://localhost:4000/api/v1/users/addSuperAdmin/5fd1e62b4cd3c851bd15c2d6
+      * @apiSampleRequest http://localhost:4000/api/v1/users/addSuperAdmin/5fd1e62b4cd3c851bd15c2d6
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -658,8 +658,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
       * @apiDescription API to User Logout
       *  @apiUse AuthorizationHeader
       * @apiExample {curl} Example usage:
-      *     curl -i http://localhost:4000/policy.robosoftin.com/users/logout
-      * @apiSampleRequest http://localhost:4000/policy.robosoftin.com/users/logout
+      *     curl -i http://localhost:4000/api/v1/users/logout
+      * @apiSampleRequest http://localhost:4000/api/v1/users/logout
       * @apiSuccessExample Success-Response:
       *     HTTP/1.1 200 OK
       *     {
@@ -708,5 +708,5 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
       */
 
 
-    app.use("/policy.robosoftin.com/users", userRouter);
+    app.use("/api/v1/users", userRouter);
 };
