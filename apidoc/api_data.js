@@ -86,7 +86,7 @@ define({ "api": [
     }
   },
   {
-    "type": "get",
+    "type": "post",
     "url": "/questionnaires/previewQuestionnaire",
     "title": "Preview Questionnaire",
     "name": "Preview_Questionnaire",
@@ -97,17 +97,17 @@ define({ "api": [
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "string",
             "optional": false,
             "field": "questionnaireId",
-            "description": "<p>Questionnaire Id.</p>"
+            "description": "<p>questionnaire Id</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n              \"questionnaireId \": \"5fd1e62b4cd3c851bd15c2d6\",\n       }",
+          "content": "{\n     \"questionnaireId\":\"5fd1e62b4cd3c851bd15c2d6\"\n }",
           "type": "json"
         }
       ]
@@ -178,6 +178,26 @@ define({ "api": [
     "name": "Publish_Questionnaire",
     "group": "Questionnaire",
     "description": "<p>API to Publish Questionnaire</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Questionnaire_id",
+            "description": "<p>Questionnaire_id.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"questionnaireId\": \"5fd1e62b4cd3c851bd15c2d6\",\n }",
+          "type": "json"
+        }
+      ]
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -393,6 +413,26 @@ define({ "api": [
     "name": "delete_questionnaire_data",
     "group": "Questionnaire",
     "description": "<p>API to delete  questionnaire data</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "questionnaireId",
+            "description": "<p>questionnaire Id.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"questionnaireId\": \"5fd1e62b4cd3c851bd15c2d6\",\n }",
+          "type": "json"
+        }
+      ]
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -740,6 +780,26 @@ define({ "api": [
     "name": "upload_file",
     "group": "Questionnaire",
     "description": "<p>API to upload file</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "file",
+            "description": "<p>filename.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"file\": \"END-USER.xlsx\",\n }",
+          "type": "json"
+        }
+      ]
+    },
     "examples": [
       {
         "title": "Example usage:",
@@ -1614,6 +1674,26 @@ define({ "api": [
     "name": "change_password",
     "group": "Users",
     "description": "<p>API to Send password updataion link to user</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User email.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n       \"email\":\"winston.pashan67@99games.com\"\n       }",
+          "type": "json"
+        }
+      ]
+    },
     "examples": [
       {
         "title": "Example usage:",

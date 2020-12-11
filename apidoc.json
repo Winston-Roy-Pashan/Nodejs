@@ -1,7 +1,7 @@
 {
-    "name": "In-vision",
-    "version": "0.1.0",
-    "description": "APIs for In-vision application",
-    "title": "In-vision API documentation",
-    "url" : "localhost:4000/docs"
-  }
+  "name": "In-vision",
+  "version": "0.1.0",
+  "description": "APIs for In-vision application",
+  "title": "In-vision API documentation",
+  "url": "localhost:4000/docs"
+}

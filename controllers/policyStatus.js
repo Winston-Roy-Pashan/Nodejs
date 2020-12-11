@@ -23,11 +23,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             if (req.user && req.user.userType === 'endUser') {
 
                 var policyStatusObj = {};
-               // policyStatusObj.userId = req.user._id;
                 if (req.body.questionnaireId) {
                     policyStatusObj.questionnaireId = req.body.questionnaireId;
                 }
-                 policyStatusObj.policyAccept = true;
+                policyStatusObj.policyAccept = true;
                 var query = {};
                 query.userId = req.user._id;
                 let policyStatusData = await PolicyStatus.getData(query);

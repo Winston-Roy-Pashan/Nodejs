@@ -38,7 +38,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     userObj.password = await utils.generatePassword();
                     var sub = "Congratulations, You are selected as SuperAdmin";
                     var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                    var intro = ["Username :" + userObj.email, "Password :" + userObj.password, "Please use this credential to login into Invision"];
+                    var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
                     await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
                     userObj.password = await utils.encryptPassword(userObj.password);
                 }
@@ -47,7 +47,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     userObj.password = await utils.generatePassword();
                     var sub = "Congratulations, You are selected as Admin";
                     var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                    var intro = ["Username :" + userObj.email, "Password :" + userObj.password, "Please use this credential to login into Invision"];
+                    var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
                     console.log("intrcution..........", intro);
                     await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
                     userObj.password = await utils.encryptPassword(userObj.password);
@@ -145,7 +145,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
             queryObj.query.email = req.body.email;
             queryObj.selectFields = '-password -token -tokenExpiry';
-            console.log("quesyobj...",queryObj)
+            console.log("quesyobj...", queryObj)
             let user = await Users.getLists(queryObj);
             console.log("user.......", user)
             if (!user) {
@@ -153,7 +153,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } else {
                 var subject = "Change Password";
                 var passwordUpdateLink = "https://projects.invisionapp.com/share/UVYGK8TWQJZ#/screens/432694629";
-                var intro = "UserType :" + user.userType + " \nUsername " + user.email;
+                var intro = "UserType :" + user.userType + " <br>Username " + user.email;
                 await utils.sendMail(user.name, user.email, intro, subject, passwordUpdateLink);
                 return utils.sendResponse(req, res, user, "SUCCESS", "SUCCESS");
             }

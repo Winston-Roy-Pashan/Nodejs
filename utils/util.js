@@ -125,7 +125,6 @@ module.exports = {
     encryptPassword: function (password) {
         var ciphertext = CryptoJS.HmacSHA1(password, config.passwordSecret).toString();
         return ciphertext;
-
     },
 
     generateExpiryTime: function () {
@@ -145,11 +144,11 @@ module.exports = {
     },
 
     sendMail: function (name, email, intro, subject, link) {
-        console.log("*************")
-        services.email.sendMail(name,email, intro, subject, link, function (err, data) {
-            console.log("err", err, "data", data)
+        console.log("Mail sent to successfully to " + name)
+        services.email.sendMail(name, email, intro, subject, link, function (err, data) {
+            // console.log("err", err, "data", data)
         })
-     },
+    },
     readexcelsheet: function (filepath) {
         var wb = xlsx.readFile(filepath);
         var ws = wb.Sheets["Sheet1"];

@@ -32,7 +32,7 @@ var config = {
         email: {
             'user': 'nodetraining@yahoo.com',
             'pass': 'yvwhpyxhommrvkkf'
-    },
+        },
     },
 
     development: {
@@ -51,7 +51,7 @@ var config = {
         email: {
             'user': 'nodetraining@yahoo.com',
             'pass': 'yvwhpyxhommrvkkf'
-    },
+        },
     },
 
     staging: {
@@ -71,7 +71,7 @@ var config = {
         email: {
             'user': 'nodetraining@yahoo.com',
             'pass': 'yvwhpyxhommrvkkf'
-    },
+        },
     },
     production: {
         mongo: {
@@ -96,7 +96,7 @@ var config = {
         email: {
             'user': 'nodetraining@yahoo.com',
             'pass': 'yvwhpyxhommrvkkf'
-    },
+        },
     }
 };
 

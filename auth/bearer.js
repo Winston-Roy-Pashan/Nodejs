@@ -12,7 +12,6 @@ var BearerStrategy = require("passport-http-bearer").Strategy;
 var mongoose = require("mongoose");
 var Users = mongoose.model("Users");
 var config = require("../configs/config");
-// module.exports = function () {
 
 passport.use(new BearerStrategy(
     async function (token, done) {

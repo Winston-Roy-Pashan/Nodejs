@@ -4,8 +4,8 @@ var config = require("../../configs/config");
 var Mailgen = require("mailgen");
 // https://medium.com/javascript-in-plain-english/how-to-send-emails-with-node-js-1bb282f334fe
 module.exports = {
-    sendMail: function (name,email, introduction, subject, policyLink, cb) {
-       // console.log("Password......", password)
+    sendMail: function (name, email, introduction, subject, policyLink, cb) {
+        // console.log("Password......", password)
         // console.log("Link......", policyLink)
         let transporter = nodemailer.createTransport({
             service: "Yahoo",
@@ -25,7 +25,7 @@ module.exports = {
         let response = {
             body: {
                 name,
-                intro: [ introduction ,'<a href= "' + policyLink + '" >click here </a>'],
+                intro: [introduction, '<a href= "' + policyLink + '" >click here </a>'],
             },
         };
         let mail = MailGenerator.generate(response);

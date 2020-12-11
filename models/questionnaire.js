@@ -29,7 +29,7 @@ module.exports = function (mongoose) {
         buttonText: {
             type: String
         },
-        checkBoxText:{
+        checkBoxText: {
             type: String
         },
         selectStartDate: {

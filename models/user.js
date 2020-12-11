@@ -17,20 +17,18 @@ module.exports = function (mongoose) {
             type: String
         },
         email: {
-            type: String,
-            unique:true
-
+            type: String
         },
         employeeCode: {
             type: String
         },
         userType: {
             type: String,
-           default:'endUser'
+            default: 'endUser'
         },
-        isAdmin:{
-            type:Boolean,
-            default:false
+        isAdmin: {
+            type: Boolean,
+            default: false
         },
         password: {
             type: String,

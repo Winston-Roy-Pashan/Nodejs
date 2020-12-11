@@ -1193,3 +1193,423 @@ info [Thu Dec 10 2020 17:37:51 GMT+0530 (India Standard Time)]  user logged in .
   token: '89dfedfd-379e-4c0b-b3d9-252ba244cf17',
   tokenExpiry: 2020-12-10T13:02:45.860Z
 }
+
+info [Thu Dec 10 2020 17:47:59 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:07:51.301Z,
+  token: '018b9fb5-e1c7-4422-b7f3-d3175e7e12fa',
+  tokenExpiry: 2020-12-10T13:07:51.299Z
+}
+info [Thu Dec 10 2020 17:53:14 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:17:59.248Z,
+  token: '3dc60045-9554-4e6d-8caf-627903e9b3ee',
+  tokenExpiry: 2020-12-10T13:17:59.246Z
+}
+
+
+info [Thu Dec 10 2020 17:56:07 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:23:14.403Z,
+  token: '97fd8c49-14f1-49c2-8b77-3a6589a32791',
+  tokenExpiry: 2020-12-10T13:23:14.402Z
+}
+
+
+
+
+info [Thu Dec 10 2020 18:04:17 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:26:07.117Z,
+  token: 'a89fa3eb-1ab3-4bfc-96b0-0ecd28018532',
+  tokenExpiry: 2020-12-10T13:26:07.116Z
+}
+
+
+
+
+info [Thu Dec 10 2020 18:14:50 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:34:17.024Z,
+  token: 'c63adb2a-8a78-4e47-ad33-fe17baaa9bcd',
+  tokenExpiry: 2020-12-10T13:34:17.022Z
+}
+
+
+
+info [Thu Dec 10 2020 18:16:41 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Thu Dec 10 2020 18:16:49 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:44:50.581Z,
+  token: '4a03d31a-417a-42d4-a4a1-ffa935a8ac30',
+  tokenExpiry: 2020-12-10T13:44:50.579Z
+}
+
+
+
+info [Thu Dec 10 2020 18:21:55 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:46:49.007Z,
+  token: 'cb19d47c-b1f7-4888-bce1-2360708d86f0',
+  tokenExpiry: 2020-12-10T13:46:49.005Z
+}
+
+info [Thu Dec 10 2020 18:28:53 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:51:55.808Z,
+  token: '3d7bb126-5bfa-4261-8253-139ef0c9e6c3',
+  tokenExpiry: 2020-12-10T13:51:55.803Z
+}
+info [Thu Dec 10 2020 18:29:14 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:58:53.337Z,
+  token: '3fbf0016-a501-498a-a133-6a62461bbecb',
+  tokenExpiry: 2020-12-10T13:58:53.333Z
+}
+
+
+info [Thu Dec 10 2020 18:35:53 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T12:59:14.925Z,
+  token: 'ad979f09-9e83-4f70-a2aa-f46409143943',
+  tokenExpiry: 2020-12-10T13:59:14.925Z
+}
+
+
+info [Thu Dec 10 2020 18:39:37 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:05:53.180Z,
+  token: '009f78a7-7823-4220-a83a-70f08c51870f',
+  tokenExpiry: 2020-12-10T14:05:53.178Z
+}
+
+
+info [Thu Dec 10 2020 18:42:17 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:09:37.688Z,
+  token: 'e0c534ea-20e4-45a0-99fa-47d1bbed3157',
+  tokenExpiry: 2020-12-10T14:09:37.687Z
+}
+
+
+info [Thu Dec 10 2020 18:45:35 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:12:17.684Z,
+  token: '8dce05e8-b070-49d1-b338-d4f14a292f32',
+  tokenExpiry: 2020-12-10T14:12:17.683Z
+}
+
+
+
+info [Thu Dec 10 2020 18:48:24 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:15:35.141Z,
+  token: '18d54810-0fc4-4a44-a254-f14896654b3d',
+  tokenExpiry: 2020-12-10T14:15:35.140Z
+}
+
+info [Thu Dec 10 2020 18:52:45 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:18:24.658Z,
+  token: '21b1f036-28f1-4d66-b1c3-06111357b9ca',
+  tokenExpiry: 2020-12-10T14:18:24.657Z
+}
+
+info [Fri Dec 11 2020 10:00:56 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-10T13:22:45.808Z,
+  token: 'cbbb4e05-f16b-41dd-9a3f-6d40b54fa7ef',
+  tokenExpiry: 2020-12-10T14:22:45.807Z
+}
+
+
+
+
+
+
+
+
+
+
+info [Fri Dec 11 2020 11:03:00 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T04:30:56.152Z,
+  token: 'd78a1436-30a2-4509-9d63-ffeabad06dcb',
+  tokenExpiry: 2020-12-11T05:30:56.151Z
+}
+info [Fri Dec 11 2020 11:08:55 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T05:33:00.024Z,
+  token: 'c7e460ef-aba2-4f17-b4fb-c7555e67f59c',
+  tokenExpiry: 2020-12-11T06:33:00.023Z
+}
+
+
+
+
+
+info [Fri Dec 11 2020 11:43:20 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T05:38:55.889Z,
+  token: '935f1bf9-3f8e-44ad-bf61-4c0b0adb410d',
+  tokenExpiry: 2020-12-11T06:38:55.889Z
+}
+
+
+
+
+info [Fri Dec 11 2020 12:45:41 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T06:13:20.875Z,
+  token: 'b87b84aa-4b69-4cf9-9a0c-b6dc63024bbf',
+  tokenExpiry: 2020-12-11T07:13:20.874Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+info [Fri Dec 11 2020 13:57:34 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T07:15:41.607Z,
+  token: 'c83bb321-7742-43af-82ec-4a748ed818e3',
+  tokenExpiry: 2020-12-11T08:15:41.605Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+info [Fri Dec 11 2020 15:59:38 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T08:27:34.220Z,
+  token: '1ab6b6a8-8b49-4e79-9528-420967466742',
+  tokenExpiry: 2020-12-11T09:27:34.218Z
+}
+
+info [Fri Dec 11 2020 16:17:38 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  IsAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  Employee_code: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T10:29:38.133Z,
+  token: '51e44c41-14f4-4978-ba12-99d8e93a28c2',
+  tokenExpiry: 2020-12-11T11:29:38.132Z
+}
+
+
+
+
+
+

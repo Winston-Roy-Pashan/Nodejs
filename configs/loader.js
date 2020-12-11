@@ -25,7 +25,7 @@ module.exports = function (app, mongoose, utils, config, constants, logger, uplo
 
     var upload = multer({ storage: storage });
 
- 
+
     var modelPath = config.root + "/models";
     var routePath = config.root + "/routes";
 

@@ -22,10 +22,10 @@ module.exports = function (mongoose) {
             ref: 'Questionnaires'
         },
         policyAccept: {
-            type:Boolean,
-            default:false
+            type: Boolean,
+            default: false
         },
-      
+
         __v: {
             type: Number,
             select: false
