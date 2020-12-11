@@ -14,6 +14,9 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 
     var questionnaireRouter = express.Router();
 
+    questionnaireRouter.get("/remindQuestionnaire", questionnaireCtrl.remindQuestionnaire);
+
+
     //api to save Questionnaire
     questionnaireRouter.post("/addQuestionnaire", authenticateToken, questionnaireCtrl.addQuestionnaire);
     /**

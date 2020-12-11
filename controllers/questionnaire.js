@@ -49,22 +49,32 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     console.log("strt date......", startDate)
                     console.log("currentDate......", currentDate)
                     if (startDate < currentDate) {
-                        return utils.sendCustomError(req, res, 'CONFLICT', 'BAD_PARAMS');
+                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_DATE');
                     } else {
                         questionnaireObj.selectStartDate = startDate;
                     }
                 }
                 if (req.body.selectEndDate) {
+                    var startDate = new Date(req.body.selectStartDate);
                     var endDate = new Date(req.body.selectEndDate);
                     console.log("endDate......", endDate)
+
+                    console.log("Date minusss......", diffDays)
                     if (endDate <= questionnaireObj.selectStartDate) {
-                        return utils.sendCustomError(req, res, 'CONFLICT', 'BAD_PARAMS');
+                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_DATE');
                     } else {
                         questionnaireObj.selectEndDate = endDate;
                     }
                 }
                 if (req.body.autoReminder) {
-                    questionnaireObj.autoReminder = req.body.autoReminder;
+                    var startDate = new Date(questionnaireObj.selectStartDate);
+                    var endDate = new Date(questionnaireObj.selectEndDate);
+                    var diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                    if (req.body.autoReminder <= diffDays) {
+                        questionnaireObj.autoReminder = req.body.autoReminder;
+                    } else {
+                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_AUTO_REMIND');
+                    }
                 }
                 if (req.body.selectContentFile) {
                     questionnaireObj.selectContentFile = path.join(__dirname, "..", "uploads/") + req.body.selectContentFile;
@@ -196,10 +206,6 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 console.log("questionnire data.......", data);
                 var mailBody = data.mailBody
 
-                var adminData = {};
-                adminData.userId = req.user._id;
-                adminData.questionnaireId = questionnareId;
-                await policyStatus.addData(adminData);
                 var sub = "Read and Accept the Policy";
                 var link = "http://localhost:4000/policy.robosoftin.com/questionnaires?" + questionnaireObj.questionnaireId;
                 var intro = mailBody + "<br>Please use your existence credential to login into Invision";
@@ -209,8 +215,12 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 console.log("dataExcel...........", dataExcel)
 
                 dataExcel.forEach(async function (user) {
+                    var queryObj = {};
+                    queryObj.email = user.EMAIL;
+                    let userData = await Users.getData(queryObj);
+
                     var policyStatusObj = {};
-                    policyStatusObj.userId = data._id;
+                    policyStatusObj.userId = userData._id;
                     policyStatusObj.questionnaireId = questionnareId;
                     await policyStatus.addData(policyStatusObj);
                     await utils.sendMail(user.NAME, user.EMAIL, intro, sub, link);
@@ -230,31 +240,32 @@ module.exports = function (mongoose, utils, config, constants, logger) {
     //Remind Questionnaire
     questionnaireCtrl.remindQuestionnaire = async function (req, res) {
         try {
+            var queryObj = {};
+            queryObj.query = {};
+            queryObj.options = {};
+            let data = await Questionnaires.getLists(queryObj);
+            data.forEach(async function (user) {
+                var currentDate = new Date();
+                var startDate = new Date(user.selectStartDate);
+                var endDate = new Date(user.selectEndDate);
+                if (startDate <= currentDate && currentDate <= endDate) {
+                    var queryObj = {};
+                    queryObj.query = {};
+                    queryObj.query.questionnaireId = user._id;
+                    queryObj.options = {};
+                    queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' }])
+                    let policyData = await policyStatus.getLists(queryObj);
+                    policyData.forEach(async function (user) {
+                        if (user.policyAccept == false) {
+                            var sub = "Reminder";
+                            var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
+                            var intro = "Please Complete the Policy Process within a Due Date";
+                            await utils.sendMail(user.userId.name, user.userId.email, intro, sub, link);
 
-            // var questionnaireObj = {};
-            // if (req.body.Questionnaire_id) {
-            //     questionnaireObj.Questionnaire_id = req.body.Questionnaire_id;
-            // }
-            // let data = await Questionnaires.getDataById(questionnaireObj.Questionnaire_id);
-            // console.log("questionnire data.......", data);
-            // var filename= data.selectParticipantXLSheet;
-            // var datafile = path.join(__dirname, "..", "uploads/") + filename;
-            var datafile = path.join(__dirname, "..", "uploads/") + 'END-USER.xlsx';
-            var dataExcel = await utils.readexcelsheet(datafile)
-            console.log("dataExcel...........", dataExcel)
-
-            var userObj = {};
-            dataExcel.forEach(async function (user) {
-                userObj.email = user.EMAIL;
-
-                var sub = "Reminder";
-                var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                var intro = "Please Complete the Policy Process within a Due Date";
-
-                console.log("user obj.....", userObj)
-
-                let data = await Users.getData(userObj);
-                await utils.sendMail(data.name, data.email, intro, sub, link);
+                        }
+                    })
+                    console.log("*********************************************")
+                }
             });
         } catch (error) {
             console.log("____________Err", error)
@@ -336,7 +347,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             if (data.length > 0) {
                 data.forEach(element => {
                     console.log("Current Element------>", element);;
-                    xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Policy_Id": element.questionnaireId, "Policy_Status": element.policyAccept });
+                    xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Employee_Code": element.userId.employeeCode, "Policy_Id": element.questionnaireId, "Policy_Status": element.policyAccept });
                 });
             }
             try {
@@ -361,7 +372,6 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             } catch (err) {
                 console.error(err);
             }
-            // return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
         } else {
             //  utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
         }

@@ -45,7 +45,9 @@ module.exports = {
         "WRONG_PASSWORD": "Entered Wrong Password",
         "ACCEPTED": "You are accepted the Policy",
         "ALREADY_ACCEPTED": "You are already accepted the Policy",
-        "QUESTIONNAIRE_EXISTS": "Entered Questionnaire Already Exists"
+        "QUESTIONNAIRE_EXISTS": "Entered Questionnaire Already Exists",
+        "INVALID_DATE": "Wrong date Params",
+        "INVALID_AUTO_REMIND": "Invalid auto reminder"
     }
 };
 

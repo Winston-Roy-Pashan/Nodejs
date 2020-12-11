@@ -49,7 +49,6 @@ app.listen(config.port, function () {
 var remindCtrl = require('./controllers/questionnaire.js')(mongoose, utils, config, constants);
 cron.schedule('0 9 * * *', function () {
     remindCtrl.remindQuestionnaire();
-
 });
 
 module.exports = app;
