@@ -1715,3 +1715,33 @@ info [Fri Dec 11 2020 21:56:18 GMT+0530 (India Standard Time)]  user logged in .
 
 
 
+
+
+info [Tue Dec 15 2020 09:45:17 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd391849268552ecfd2cc0c,
+  userType: 'endUser',
+  isAdmin: false,
+  email: 'mail2winstonroy@yahoo.com',
+  name: 'Roy Pashan',
+  employeeCode: 'MNG002',
+  password: 'e3dcf0135c52bd0b9fa5271c0dbe9ab578c7788d',
+  createdAt: 2020-12-11T15:34:28.793Z,
+  updatedAt: 2020-12-11T15:49:30.049Z,
+  token: '9181f79c-d388-4dab-ac6f-f9e6bda3795b',
+  tokenExpiry: 2020-12-11T16:49:30.048Z
+}
+info [Tue Dec 15 2020 09:47:14 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-11T16:26:18.350Z,
+  token: '90aef9f4-140f-4d7f-875c-7a18c60098e4',
+  tokenExpiry: 2020-12-11T17:26:18.348Z
+}
+
+

@@ -47,5 +47,36 @@ module.exports = function (mongoose, utils, config, constants, logger) {
         }
 
     }
+    policyStatusCtrl.getPendingAgreements = async function (req, res) {
+        try {
+            var query = {};
+            query.email = req.user.email;
+            let data = await Users.getData(query);
+            console.log("Data---> for accept pending ---> ", data);
+
+            var queryObj = {};
+            queryObj.query = {};
+            queryObj.query.userId = data._id;
+            queryObj.options = {};
+            queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' },{ path: 'questionnaireId', select: 'title description selectStartDate selectEndDate' }])
+            let questionnaireAgreementStatusData = await PolicyStatus.getLists(queryObj);
+            console.log("QuestionnaireAgreementStatus--->", questionnaireAgreementStatusData);
+            let pendingAgreements = [];
+            questionnaireAgreementStatusData.forEach(async function (agreement) {
+                if (agreement.policyAccept == false) {
+                    console.log("Pending ---->", agreement);
+                    pendingAgreements.push(agreement);
+                }
+            })
+            return utils.sendResponse(req, res, pendingAgreements, "SUCCESS", "SUCCESS");
+        } catch (error) {
+            console.log("____________Err", error)
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+    }
+
+
+
+
     return policyStatusCtrl;
 }

@@ -162,6 +162,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             return utils.sendDBCallbackErrs(req, res, error, null);
         }
     }
+    
 
     userCtrl.getUser = async function (req, res) {
         try {
@@ -240,7 +241,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
     userCtrl.deleteUser = async function (req, res) {
         try {
-            if (req.user && req.user.userType === 'SuperAdmin') {
+            if (req.user && (req.user.userType === 'SuperAdmin' || req.user.userType === 'Admin')) {
                 let data = await Users.removeDataById(req.params.userId);
                 if (!data) {
                     return utils.sendCustomError(req, res, "HTTP_ERR", "DATA_NOT_EXISTS")
