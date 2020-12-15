@@ -41,6 +41,10 @@ module.exports = function (mongoose) {
         autoReminder: {
             type: Number,
         },
+        reminder: {
+            type: Boolean,
+            default:false
+        },
         selectContentFile: {
             type: String
         },

@@ -1745,3 +1745,32 @@ info [Tue Dec 15 2020 09:47:14 GMT+0530 (India Standard Time)]  user logged in .
 }
 
 
+
+info [Tue Dec 15 2020 11:26:33 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd067617b264a1711cad359,
+  userType: 'SuperAdmin',
+  isAdmin: false,
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '31e39712d23cd369aa46d5aa476e7bd591848d7e',
+  createdAt: 2020-12-09T05:57:53.097Z,
+  updatedAt: 2020-12-10T08:24:01.299Z,
+  token: '1e18db6a-c437-4eb6-bd93-202829ec11a2',
+  tokenExpiry: 2020-12-10T09:24:01.298Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

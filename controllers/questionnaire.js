@@ -49,7 +49,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     console.log("strt date......", startDate)
                     console.log("currentDate......", currentDate)
                     if (startDate < currentDate) {
-                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_DATE');
+                        return utils.sendCustomError(req, res, 'INVALID', 'INVALID_DATE');
                     } else {
                         questionnaireObj.selectStartDate = startDate;
                     }
@@ -59,9 +59,9 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     var endDate = new Date(req.body.selectEndDate);
                     console.log("endDate......", endDate)
 
-                    console.log("Date minusss......", diffDays)
+
                     if (endDate <= questionnaireObj.selectStartDate) {
-                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_DATE');
+                        return utils.sendCustomError(req, res, 'INVALID', 'INVALID_DATE');
                     } else {
                         questionnaireObj.selectEndDate = endDate;
                     }
@@ -70,10 +70,11 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     var startDate = new Date(questionnaireObj.selectStartDate);
                     var endDate = new Date(questionnaireObj.selectEndDate);
                     var diffDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+                    console.log("Date minusss......", diffDays)
                     if (req.body.autoReminder <= diffDays) {
                         questionnaireObj.autoReminder = req.body.autoReminder;
                     } else {
-                        return utils.sendCustomError(req, res, 'CONFLICT', 'INVALID_AUTO_REMIND');
+                        return utils.sendCustomError(req, res, 'INVALID', 'INVALID_AUTO_REMIND');
                     }
                 }
                 if (req.body.selectContentFile) {
@@ -244,29 +245,68 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             queryObj.query = {};
             queryObj.options = {};
             let data = await Questionnaires.getLists(queryObj);
-            data.forEach(async function (user) {
-                var currentDate = new Date();
-                var startDate = new Date(user.selectStartDate);
-                var endDate = new Date(user.selectEndDate);
-                if (startDate <= currentDate && currentDate <= endDate) {
-                    var queryObj = {};
-                    queryObj.query = {};
-                    queryObj.query.questionnaireId = user._id;
-                    queryObj.options = {};
-                    queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' }])
-                    let policyData = await policyStatus.getLists(queryObj);
-                    policyData.forEach(async function (user) {
-                        if (user.policyAccept == false) {
-                            var sub = "Reminder";
-                            var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                            var intro = "Please Complete the Policy Process within a Due Date";
-                            await utils.sendMail(user.userId.name, user.userId.email, intro, sub, link);
+            data.forEach(async function (questionnaire) {
+                if (questionnaire.reminder) {
+                    var policyTitle = questionnaire.title;
+                    var currentDate = new Date();
+                    var startDate = new Date(questionnaire.selectStartDate);
+                    var endDate = new Date(questionnaire.selectEndDate);
+                    var dateGap = Math.ceil((endDate - currentDate) / (1000 * 60 * 60 * 24));
+                    console.log("date gap..........", dateGap);
+                    if (dateGap % questionnaire.autoReminder == 0) {
+                        if (startDate <= currentDate && currentDate <= endDate) {
+                            var queryObj = {};
+                            queryObj.query = {};
+                            queryObj.query.questionnaireId = questionnaire._id;
+                            queryObj.options = {};
+                            queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' }])
+                            let policyData = await policyStatus.getLists(queryObj);
+                            policyData.forEach(async function (policy) {
+                                if (policy.policyAccept == false) {
+                                    var sub = "Reminder";
+                                    var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
+                                    var intro = "Please Complete the " + policyTitle + " Policy Process within a " + endDate;
+                                    await utils.sendMail(policy.userId.name, policy.userId.email, intro, sub, link);
 
+                                }
+                            })
+                            console.log("*********************************************")
                         }
-                    })
-                    console.log("*********************************************")
+                    }
                 }
             });
+        } catch (error) {
+            console.log("____________Err", error)
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+
+    }
+
+    //auto reminder
+    questionnaireCtrl.autoRemind = async function (req, res) {
+        try {
+            console.log("useer type .......", req.user);
+            if (req.user && req.user.userType === 'Admin') {
+
+                var autoRemindObj = {};
+                if (req.body.questionnaireId) {
+                    autoRemindObj._id = req.body.questionnaireId;
+                }
+                autoRemindObj.reminder = true;
+                var query = {};
+                query._id = req.body.questionnaireId;
+                let questionnaireData = await Questionnaires.getData(query);
+                console.log("questionnaireData data.........", questionnaireData)
+                if (!questionnaireData) {
+                    return utils.sendCustomError(req, res, "CONFLICT", "NO_RECORDS")
+                } else {
+                    let data = await Questionnaires.updateDataById(questionnaireData._id, autoRemindObj);
+                    console.log("________________data", data);
+                    return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+                }
+            } else {
+                return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
+            }
         } catch (error) {
             console.log("____________Err", error)
             return utils.sendDBCallbackErrs(req, res, error, null);

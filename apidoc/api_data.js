@@ -473,6 +473,92 @@ define({ "api": [
     }
   },
   {
+    "type": "post",
+    "url": "/questionnaires/autoRemind",
+    "title": "upload file",
+    "name": "autoRemind",
+    "group": "Questionnaire",
+    "description": "<p>API to autoRemind</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "Questionnaire_id",
+            "description": "<p>Questionnaire_id.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"questionnaireId\": \"5fd1e62b4cd3c851bd15c2d6\",\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://localhost:4000/api/v1/questionnaires/autoRemind",
+        "type": "curl"
+      }
+    ],
+    "sampleRequest": [
+      {
+        "url": "http://localhost:4000/api/v1/questionnaires/autoRemind"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n    {\n                \"meta\": {\n                \"code\": 200,\n                \"message\": \"Success\",\n                \"timestamp\": \"2020-11-12T04:47:52.234Z\"\n               }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n            \"meta\": {\n            \"code\": 400,\n             \"message\": \"NO_RECORDS\",\n            \"timestamp\": \"2020-11-12T04:49:00.959Z\"\n           }\n          }",
+          "type": "json"
+        },
+        {
+          "title": "Error-Response:",
+          "content": " HTTP/1.1 500 Bad Request\n{\n              \"meta\": {\n              \"code\": 500,\n              \"message\": \"Error in  Database\",\n              \"timestamp\": \"2020-11-12T09:47:19.345Z\"\n          }\n      }\n      }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "routes/questionnaire.js",
+    "groupTitle": "Questionnaire",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token obtained through login</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer e244d797-c6fc-4681-a82d-abbc3faa99ab\"\n}",
+          "type": "json"
+        }
+      ]
+    }
+  },
+  {
     "type": "delete",
     "url": "/questionnaires/5fd1e62b4cd3c851bd15c2d6",
     "title": "delete questionnaire data",
@@ -1239,7 +1325,27 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "routes/user.js",
-    "groupTitle": "Users"
+    "groupTitle": "Users",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token obtained through login</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Authorization\": \"Bearer e244d797-c6fc-4681-a82d-abbc3faa99ab\"\n}",
+          "type": "json"
+        }
+      ]
+    }
   },
   {
     "type": "get",

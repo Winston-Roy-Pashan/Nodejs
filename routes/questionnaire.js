@@ -318,7 +318,52 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
          }
           */
     //api to Remind questionnaire
-    // questionnaireRouter.get("/", questionnaireCtrl.remindQuestionnaire);
+    questionnaireRouter.post("/autoRemind",authenticateToken, questionnaireCtrl.autoRemind);
+    /**
+          * @api {post} /questionnaires/autoRemind  upload file 
+          * @apiName autoRemind
+          * @apiGroup Questionnaire
+          * @apiDescription API to autoRemind
+          * @apiUse AuthorizationHeader
+          * @apiParam {String} Questionnaire_id Questionnaire_id.
+            @apiParamExample {json} Request-Example:
+          *    {
+          *         "questionnaireId": "5fd1e62b4cd3c851bd15c2d6",
+          *     }
+          * @apiExample {curl} Example usage:
+          *     curl -i http://localhost:4000/api/v1/questionnaires/autoRemind
+          * @apiSampleRequest http://localhost:4000/api/v1/questionnaires/autoRemind
+          * @apiSuccessExample Success-Response:
+          *     HTTP/1.1 200 OK
+          *     {
+                "meta": {
+                "code": 200,
+                "message": "Success",
+                "timestamp": "2020-11-12T04:47:52.234Z"
+               }
+          *}
+           
+          *
+          * @apiErrorExample Error-Response:
+          *     HTTP/1.1 400 Bad Request
+          *     {
+                "meta": {
+                "code": 400,
+                 "message": "NO_RECORDS",
+                "timestamp": "2020-11-12T04:49:00.959Z"
+               }
+              }
+              * @apiErrorExample Error-Response:
+          *     HTTP/1.1 500 Bad Request
+          *    {
+                 "meta": {
+                 "code": 500,
+                 "message": "Error in  Database",
+                 "timestamp": "2020-11-12T09:47:19.345Z"
+             }
+         }
+         }
+          */
 
     // //api to update Questionnaire
     questionnaireRouter.put("/:questionnaireId", authenticateToken, questionnaireCtrl.updateQuestionnaire);
@@ -456,6 +501,10 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
          }
          }
           */
+
+
+
+
     //api to generate Report of questionnaire data
     questionnaireRouter.get("/generateReportQuestionnaire", authenticateToken, questionnaireCtrl.generateReportQuestionnaire);
     /**

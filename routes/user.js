@@ -145,6 +145,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     * @apiName Delete user
     * @apiGroup Users
     * @apiDescription API to Delete user based on Id
+    * @apiUse AuthorizationHeader
     * @apiParam {String} id User Id.
     * @apiParamExample {json} Request-Example:
     *    {
@@ -456,6 +457,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
    }
    }
     */
+
   //API to change password for End User
   userRouter.post("/sendPasswordUpdateLink", userCtrl.sendPasswordUpdateLink);
   /**
@@ -515,6 +517,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
    }
    }
     */
+
   //api to edit admin data
   userRouter.put("/addAdmin/:userId", authenticateToken, userCtrl.updateUser);
   /**
@@ -582,6 +585,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
    }
    }
     */
+   
   //api to edit superadmin data
   userRouter.put("/addSuperAdmin/:userId", authenticateToken, userCtrl.updateUser);
   /**
