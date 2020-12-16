@@ -1774,3 +1774,262 @@ info [Tue Dec 15 2020 11:26:33 GMT+0530 (India Standard Time)]  user logged in .
 
 
 
+
+
+
+
+
+
+
+
+
+
+info [Tue Dec 15 2020 15:23:31 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Tue Dec 15 2020 15:23:41 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Tue Dec 15 2020 15:23:57 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd88740669bf172692f6bde,
+  userType: 'endUser',
+  isAdmin: false,
+  email: 'mail2winstonroy@yahoo.com',
+  name: 'Roy Pashan',
+  employeeCode: 'MNG002',
+  password: 'f3b1f6f9a95af3b9c9cfc748af3401d73be17487',
+  createdAt: 2020-12-15T09:52:00.269Z,
+  updatedAt: 2020-12-15T09:52:00.269Z
+}
+
+info [Tue Dec 15 2020 16:55:34 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T04:17:14.313Z,
+  token: 'e86dee63-525d-4a84-af5e-fa0caffcf6db',
+  tokenExpiry: 2020-12-20T05:17:14.313Z
+}
+info [Tue Dec 15 2020 16:55:46 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Tue Dec 15 2020 16:55:58 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T11:25:34.351Z,
+  token: 'e9bde3ca-34d4-4ea2-9f9b-4ac29b85a391',
+  tokenExpiry: 2020-12-15T12:25:34.350Z
+}
+info [Tue Dec 15 2020 16:57:36 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Tue Dec 15 2020 16:57:46 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: '942689d24aa0b81f538baa6c81e08dd0210a4200',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T11:27:31.087Z,
+  token: 'a1feb0a8-b2cc-44a3-bdb3-f7c93ce6e36f',
+  tokenExpiry: 2020-12-15T12:25:58.315Z
+}
+info [Tue Dec 15 2020 17:01:03 GMT+0530 (India Standard Time)]  user logged out .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: '942689d24aa0b81f538baa6c81e08dd0210a4200',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T11:27:46.180Z,
+  token: 'c8492ce8-f19c-4f80-bedd-55b77e68029b',
+  tokenExpiry: 2020-12-15T12:27:46.180Z
+}
+info [Tue Dec 15 2020 17:05:04 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: '942689d24aa0b81f538baa6c81e08dd0210a4200',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T11:31:03.706Z,
+  token: null,
+  tokenExpiry: null
+}
+info [Tue Dec 15 2020 17:16:40 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd89fee5dcdc401e423a350,
+  userType: 'endUser',
+  isAdmin: false,
+  email: 'mail2winstonroy@yahoo.com',
+  name: 'Roy Pashan',
+  employeeCode: 'MNG002',
+  password: 'd87af0ff4228d9520c70d122aa749ad6a5f539da',
+  createdAt: 2020-12-15T11:37:18.793Z,
+  updatedAt: 2020-12-15T11:37:18.793Z
+}
+
+
+
+
+
+
+info [Wed Dec 16 2020 10:07:16 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd06e584b311e1b51d3110c,
+  userType: 'Admin',
+  isAdmin: true,
+  name: 'Winston Roy',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD002',
+  password: '942689d24aa0b81f538baa6c81e08dd0210a4200',
+  createdAt: 2020-12-09T06:27:36.304Z,
+  updatedAt: 2020-12-15T11:35:04.022Z,
+  token: 'f16ad5b2-19bf-4171-8147-765c69c2fb44',
+  tokenExpiry: 2020-12-15T12:35:04.022Z
+}
+info [Wed Dec 16 2020 10:08:44 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd067617b264a1711cad359,
+  userType: 'SuperAdmin',
+  isAdmin: false,
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '31e39712d23cd369aa46d5aa476e7bd591848d7e',
+  createdAt: 2020-12-09T05:57:53.097Z,
+  updatedAt: 2020-12-15T05:56:33.260Z,
+  token: 'f90fa3d9-ff4d-4f21-a693-c8a2c651c49d',
+  tokenExpiry: 2020-12-15T06:56:33.259Z
+}
+
+
+
+
+info [Wed Dec 16 2020 11:22:31 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd067617b264a1711cad359,
+  userType: 'SuperAdmin',
+  isAdmin: false,
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '31e39712d23cd369aa46d5aa476e7bd591848d7e',
+  createdAt: 2020-12-09T05:57:53.097Z,
+  updatedAt: 2020-12-16T04:38:44.269Z,
+  token: '2e6796bf-cd5f-4a19-869e-ee5f85f8cd0b',
+  tokenExpiry: 2020-12-16T05:38:44.269Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+info [Wed Dec 16 2020 12:06:03 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd067617b264a1711cad359,
+  userType: 'SuperAdmin',
+  isAdmin: false,
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '31e39712d23cd369aa46d5aa476e7bd591848d7e',
+  createdAt: 2020-12-09T05:57:53.097Z,
+  updatedAt: 2020-12-16T05:52:31.893Z,
+  token: '1967f386-743b-4774-9691-7ac9da10f9a3',
+  tokenExpiry: 2020-12-16T06:52:31.892Z
+}
+
+
+
+
+info [Wed Dec 16 2020 12:47:44 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd9b481699143445261eb0f,
+  userType: 'SuperAdmin',
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '23b4ccb9040da1bf66999cea83e12dbda001c283',
+  createdAt: 2020-12-16T07:17:21.399Z,
+  updatedAt: 2020-12-16T07:17:21.399Z
+}
+info [Wed Dec 16 2020 12:48:15 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Wed Dec 16 2020 12:48:23 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd9b481699143445261eb0f,
+  userType: 'SuperAdmin',
+  name: 'Kevin',
+  email: 'Kevin.123@99games.in',
+  employeeCode: 'SA001',
+  password: '31e39712d23cd369aa46d5aa476e7bd591848d7e',
+  createdAt: 2020-12-16T07:17:21.399Z,
+  updatedAt: 2020-12-16T07:18:07.434Z,
+  token: '80a16e70-0383-46a5-9fd2-4fc0054e26b9',
+  tokenExpiry: 2020-12-16T08:17:44.389Z
+}
+info [Wed Dec 16 2020 12:50:57 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd9b514699143445261eb10,
+  userType: 'Admin',
+  name: 'Winston Pashan',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD001',
+  password: 'e7fa419895dea76aec05e9071e12495f22d334c1',
+  createdAt: 2020-12-16T07:19:48.434Z,
+  updatedAt: 2020-12-16T07:19:48.434Z
+}
+info [Wed Dec 16 2020 12:51:30 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fd9b514699143445261eb10,
+  userType: 'Admin',
+  name: 'Winston Pashan',
+  email: 'pashanwinsty1998@gmail.com',
+  employeeCode: 'AD001',
+  password: 'bebfa51272db59813f689192241116f07a6ce49c',
+  createdAt: 2020-12-16T07:19:48.434Z,
+  updatedAt: 2020-12-16T07:21:18.337Z,
+  token: '84191f73-9f8d-4f70-ae0f-8519d2952689',
+  tokenExpiry: 2020-12-16T08:20:57.087Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

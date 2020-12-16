@@ -320,7 +320,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
     //api to Remind questionnaire
     questionnaireRouter.post("/autoRemind",authenticateToken, questionnaireCtrl.autoRemind);
     /**
-          * @api {post} /questionnaires/autoRemind  upload file 
+          * @api {post} /questionnaires/autoRemind  autoRemind
           * @apiName autoRemind
           * @apiGroup Questionnaire
           * @apiDescription API to autoRemind
@@ -506,7 +506,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 
 
     //api to generate Report of questionnaire data
-    questionnaireRouter.get("/generateReportQuestionnaire", authenticateToken, questionnaireCtrl.generateReportQuestionnaire);
+    questionnaireRouter.post("/generateReportQuestionnaire", authenticateToken, questionnaireCtrl.generateReportQuestionnaire);
     /**
           * @api {get} /questionnaires/generateReportQuestionnaire generate Report of questionnaire data
           * @apiName generate Report of questionnaire data

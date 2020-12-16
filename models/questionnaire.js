@@ -41,6 +41,10 @@ module.exports = function (mongoose) {
         autoReminder: {
             type: Number,
         },
+        isExists:{
+            type:Boolean,
+            default:true
+        },
         reminder: {
             type: Boolean,
             default:false

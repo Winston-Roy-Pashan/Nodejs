@@ -20,7 +20,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
     policyStatusCtrl.acceptPolicy = async function (req, res) {
         try {
             console.log("useer type in policyStatus.......", req.user);
-            if (req.user && req.user.userType === 'endUser') {
+            if (req.user && req.user.userType === 'endUser' || req.user.userType === 'Admin') {
 
                 var policyStatusObj = {};
                 if (req.body.questionnaireId) {
@@ -58,7 +58,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             queryObj.query = {};
             queryObj.query.userId = data._id;
             queryObj.options = {};
-            queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' },{ path: 'questionnaireId', select: 'title description selectStartDate selectEndDate' }])
+            queryObj.populate = ([{ path: 'userId', select: 'name email employeeCode' }, { path: 'questionnaireId', select: 'title description selectStartDate selectEndDate' }])
             let questionnaireAgreementStatusData = await PolicyStatus.getLists(queryObj);
             console.log("QuestionnaireAgreementStatus--->", questionnaireAgreementStatusData);
             let pendingAgreements = [];

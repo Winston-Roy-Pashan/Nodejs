@@ -475,7 +475,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/questionnaires/autoRemind",
-    "title": "upload file",
+    "title": "autoRemind",
     "name": "autoRemind",
     "group": "Questionnaire",
     "description": "<p>API to autoRemind</p>",

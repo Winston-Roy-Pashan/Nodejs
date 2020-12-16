@@ -16,7 +16,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
     var Users = mongoose.model('Users');
     var userCtrl = {}
 
-    userCtrl.addUser = async function (req, res) {
+    userCtrl.addSuperAdmin = async function (req, res) {
         try {
             if (req.user && req.user.userType === 'SuperAdmin') {
                 var userObj = {};
@@ -29,29 +29,16 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 if (req.body.employeeCode) {
                     userObj.employeeCode = req.body.employeeCode;
                 }
-                if (req.body.userType) {
-                    userObj.userType = req.body.userType;
-                }
+                userObj.userType = "SuperAdmin";
+                userObj.password = await utils.generatePassword();
+                console.log("userObj.password.........", userObj.password)
+                var sub = "Congratulations, You are selected as SuperAdmin";
+                var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
+                var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
+                await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
+                userObj.password = await utils.encryptPassword(userObj.password);
 
-                console.log("userObj.userType........", userObj.userType)
-                if (userObj.userType === 'SuperAdmin') {
-                    userObj.password = await utils.generatePassword();
-                    var sub = "Congratulations, You are selected as SuperAdmin";
-                    var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                    var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
-                    await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
-                    userObj.password = await utils.encryptPassword(userObj.password);
-                }
-                if (userObj.userType === 'Admin') {
-                    userObj.isAdmin = 'true';
-                    userObj.password = await utils.generatePassword();
-                    var sub = "Congratulations, You are selected as Admin";
-                    var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
-                    var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
-                    console.log("intrcution..........", intro);
-                    await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
-                    userObj.password = await utils.encryptPassword(userObj.password);
-                }
+
                 var query = {};
                 query.email = req.body.email;
                 let userData = await Users.getData(query);
@@ -59,8 +46,50 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 if (userData) {
                     return utils.sendCustomError(req, res, "CONFLICT", "USER_EXISTS")
                 } else {
-                    let data = await Users.addData(userObj);
-                    console.log("________________data", data);
+                    var data = await Users.addData(userObj);
+                    data = "SuperAdmin added Successfully........!!!!!"
+                    return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+                }
+            } else {
+                return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
+            }
+        } catch (error) {
+            console.log("____________Err", error)
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+
+    }
+
+    userCtrl.addAdmin = async function (req, res) {
+        try {
+            if (req.user && req.user.userType === 'SuperAdmin') {
+                var userObj = {};
+                if (req.body.name) {
+                    userObj.name = req.body.name;
+                }
+                if (req.body.email) {
+                    userObj.email = req.body.email;
+                }
+                if (req.body.employeeCode) {
+                    userObj.employeeCode = req.body.employeeCode;
+                }
+                userObj.userType = "Admin";
+                userObj.password = await utils.generatePassword();
+                var sub = "Congratulations, You are selected as Admin";
+                var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
+                var intro = ["Username :" + userObj.email, "<br>Password :" + userObj.password, "<br>Please use this credential to login into Invision"];
+                await utils.sendMail(userObj.name, userObj.email, intro, sub, link);
+                userObj.password = await utils.encryptPassword(userObj.password);
+
+                var query = {};
+                query.email = req.body.email;
+                let userData = await Users.getData(query);
+                console.log("user data.........", userData)
+                if (userData) {
+                    return utils.sendCustomError(req, res, "CONFLICT", "USER_EXISTS")
+                } else {
+                    var data = await Users.addData(userObj);
+                    data = "Admin added Successfully........!!!!!"
                     return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
                 }
             } else {
@@ -87,7 +116,12 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 data.token = await utils.generateBearerToken();
                 data.tokenExpiry = await utils.generateExpiryTime();
                 data = await Users.updateDataById(data._id, { token: data.token, tokenExpiry: data.tokenExpiry });
-                return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+
+                var outputData = {};
+                outputData.token = data.token;
+                outputData.tokenExpiry = data.tokenExpiry;
+                console.log("outputData.........", outputData)
+                return utils.sendResponse(req, res, outputData, "SUCCESS", "SUCCESS");
             }
         } catch (error) {
             return utils.sendDBCallbackErrs(req, res, error, null);
@@ -107,7 +141,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     data.token = null;
                     data.tokenExpiry = null;
                     data = await Users.updateDataById(data._id, { token: data.token, tokenExpiry: data.tokenExpiry });
-                    return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+                    var outputData = {};
+                    outputData.token = data.token;
+                    outputData.tokenExpiry = data.tokenExpiry;
+                    return utils.sendResponse(req, res, outputData, "SUCCESS", "SUCCESS");
                 }
             } else {
                 return utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
@@ -129,6 +166,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
             if (!data) {
                 return utils.sendCustomError(req, res, "HTTP_ERR", "USER_NOT_EXISTS")
             } else {
+                data = "Password Updated Successfully........!!!!!!!!!!!"
                 return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
             }
 
@@ -139,14 +177,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
     userCtrl.sendPasswordUpdateLink = async function (req, res) {
         try {
-            var queryObj = {};
-            queryObj.query = {};
-            queryObj.options = {};
+            var query = {};
+            query.email = req.body.email;
 
-            queryObj.query.email = req.body.email;
-            queryObj.selectFields = '-password -token -tokenExpiry';
-            console.log("quesyobj...", queryObj)
-            let user = await Users.getLists(queryObj);
+            var user = await Users.getData(query);
             console.log("user.......", user)
             if (!user) {
                 return utils.sendCustomError(req, res, "HTTP_ERR", "NO_RECORDS");
@@ -154,7 +188,9 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 var subject = "Change Password";
                 var passwordUpdateLink = "https://projects.invisionapp.com/share/UVYGK8TWQJZ#/screens/432694629";
                 var intro = "UserType :" + user.userType + " <br>Username " + user.email;
+                console.log("email.......", user.email);
                 await utils.sendMail(user.name, user.email, intro, subject, passwordUpdateLink);
+                user = "Password Updatation link sent Successfully........!!!!!!!!!!!"
                 return utils.sendResponse(req, res, user, "SUCCESS", "SUCCESS");
             }
 
@@ -181,10 +217,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
         try {
             var queryObj = {};
             queryObj.query = {};
-            if (req.query.name) {
-                queryObj.query.name = req.query.name;
-            }
-            console.log(queryObj)
+           
+            queryObj.query.isExists = true;
+            
+           // console.log(queryObj)
             queryObj.options = {};
             if (req.query.limit) {
                 queryObj.options.limit = JSON.parse(req.query.limit)
@@ -209,6 +245,70 @@ module.exports = function (mongoose, utils, config, constants, logger) {
         }
     }
 
+    userCtrl.getSuperAdmin = async function (req, res) {
+        try {
+            var queryObj = {};
+            queryObj.query = {};
+           
+            queryObj.query.userType = "SuperAdmin";
+            queryObj.query.isExists = true;
+            
+           // console.log(queryObj)
+            queryObj.options = {};
+            if (req.query.limit) {
+                queryObj.options.limit = JSON.parse(req.query.limit)
+            }
+            if (req.query.skip) {
+                queryObj.options.skip = JSON.parse(req.query.skip);
+            }
+            if (req.query.sortField && req.query.sortOrder) {
+                var sortField = req.query.sortField;
+                var sortOrder = req.query.sortOrder;
+                queryObj.options.sort = { [`${sortField}`]: JSON.parse(sortOrder) };
+            };
+            if (req.query.searchText) {
+                queryObj.query.name = { $regex: req.query.searchText, $options: 'i' }
+            };
+            queryObj.selectFields = 'name email ';
+            let data = await Users.getLists(queryObj);
+            let count = await Users.getCount(queryObj.query);
+            return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS", count);
+        } catch (error) {
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+    }
+
+    userCtrl.getAdmin = async function (req, res) {
+        try {
+            var queryObj = {};
+            queryObj.query = {};
+           
+            queryObj.query.userType = "Admin";
+            queryObj.query.isExists = true;
+           // console.log(queryObj)
+            queryObj.options = {};
+            if (req.query.limit) {
+                queryObj.options.limit = JSON.parse(req.query.limit)
+            }
+            if (req.query.skip) {
+                queryObj.options.skip = JSON.parse(req.query.skip);
+            }
+            if (req.query.sortField && req.query.sortOrder) {
+                var sortField = req.query.sortField;
+                var sortOrder = req.query.sortOrder;
+                queryObj.options.sort = { [`${sortField}`]: JSON.parse(sortOrder) };
+            };
+            if (req.query.searchText) {
+                queryObj.query.name = { $regex: req.query.searchText, $options: 'i' }
+            };
+            queryObj.selectFields = 'name email ';
+            let data = await Users.getLists(queryObj);
+            let count = await Users.getCount(queryObj.query);
+            return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS", count);
+        } catch (error) {
+            return utils.sendDBCallbackErrs(req, res, error, null);
+        }
+    }
     userCtrl.updateUser = async function (req, res) {
         try {
             if (req.user && req.user.userType === 'SuperAdmin') {
@@ -222,13 +322,11 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 if (req.body.employeeCode) {
                     userObj.employeeCode = req.body.employeeCode;
                 }
-                if (req.body.userType) {
-                    userObj.userType = req.body.userType;
-                }
                 let data = await Users.updateDataById(req.params.userId, userObj);
                 if (!data) {
                     return utils.sendCustomError(req, res, "HTTP_ERR", "DATA_NOT_EXISTS")
                 } else {
+                    data = "user data Updated Successfully,..............!!!!!!!"
                     return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
                 }
             } else {
@@ -242,11 +340,15 @@ module.exports = function (mongoose, utils, config, constants, logger) {
     userCtrl.deleteUser = async function (req, res) {
         try {
             if (req.user && req.user.userType === 'SuperAdmin' || req.user.userType === 'Admin') {
-                let data = await Users.removeDataById(req.params.userId);
+                var userObj = {};
+                userObj.isExists = false;
+                
+                let data = await Users.updateDataById(req.params.userId, userObj);
                 console.log("deleted user..........".data)
                 if (!data) {
                     return utils.sendCustomError(req, res, "HTTP_ERR", "DATA_NOT_EXISTS")
                 } else {
+                    data = "user deleted Successfully,..............!!!!!!!"
                     return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
                 }
             } else {

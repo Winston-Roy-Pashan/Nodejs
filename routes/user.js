@@ -24,6 +24,8 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 *       "Authorization": "Bearer e244d797-c6fc-4681-a82d-abbc3faa99ab"
 *     }
 */
+  userRouter.get("/admin", userCtrl.getAdmin);
+  userRouter.get("/superAdmin", userCtrl.getSuperAdmin);
   //api to list user data
   userRouter.get("/", userCtrl.getUsers);
   /**
@@ -90,54 +92,6 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
    }
    }
     */
-  //api to get details of user data
-  userRouter.get("/:userId", userCtrl.getUser);
-  /**
-    * @api {get} /users/5fd1e62b4cd3c851bd15c2d6  Get user based on Id
-    * @apiName Get user
-    * @apiGroup Users
-    * @apiDescription API to get user based on Id
-    * @apiParam {String} id User Id.
-    * @apiParamExample {json} Request-Example:
-    *    {
-        "_id": "5facbe780e43085622fe5c82"
-        }
-    * @apiExample {curl} Example usage:
-    *     curl -i http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
-    * @apiSampleRequest http://localhost:4000/api/v1/users/5fd1e62b4cd3c851bd15c2d6
-    * @apiSuccessExample Success-Response:
-    *     HTTP/1.1 200 OK
-    *     {
-          "meta": {
-          "code": 200,
-          "message": "Success",
-          "timestamp": "2020-11-12T04:47:52.234Z"
-         },
-        "pagination": {},
-        "data": {
-          "_id": "5facbe780e43085622fe5c82",
-          "name":"Kevin",
-          "email":"Kevin.123@99games.in",
-          "password":"2erw43redfd56egtegdhhd67e7e",
-          "employeeCode":"SA001",
-          "userType":"SuperAdmin"
-          "createdAt": "2020-11-12T04:47:52.199Z",
-          "updatedAt": "2020-11-12T04:47:52.199Z",
-          "__v": 0
-        }
-      }
-    *
-        * @apiErrorExample Error-Response:
-    *     HTTP/1.1 500 Bad Request
-    *    {
-           "meta": {
-           "code": 500,
-           "message": "Error in  Database",
-           "timestamp": "2020-11-12T09:47:19.345Z"
-       }
-   }
-   }
-    */
   //api to delete details of user data
   userRouter.delete("/:userId", authenticateToken, userCtrl.deleteUser);
   /**
@@ -164,15 +118,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
          },
         "pagination": {},
         "data": {
-          "_id": "5facbe780e43085622fe5c82",
-          "name":"Kevin",
-          "email":"Kevin.123@99games.in",
-          "password":"2erw43redfd56egtegdhhd67e7e",
-          "employeeCode":"SA001",
-          "userType":"SuperAdmin"
-          "createdAt": "2020-11-12T04:47:52.199Z",
-          "updatedAt": "2020-11-12T04:47:52.199Z",
-          "__v": 0
+         
         }
       }
     *
@@ -193,7 +139,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 
 
   //api to add superAdmin
-  userRouter.post("/addSuperAdmin", authenticateToken, userCtrl.addUser);
+  userRouter.post("/addSuperAdmin", authenticateToken, userCtrl.addSuperAdmin);
   /**
 * @api {post} /users/addSuperAdmin Add SuperAdmin
 * @apiName AddSuperAdmin
@@ -203,13 +149,11 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 * @apiParam {String} name SuperAdmin Name.
 * @apiParam {String} email SuperAdmin Email.
 * @apiParam {String} employeeCode SuperAdmin employeeCode.
-* @apiParam {String} userType SuperAdmin userType.
 * @apiParamExample {json} Request-Example:
 *    {
     "name":"Kevin",
     "email":"Kevin.123@99games.in",
     "employeeCode":"SA001",
-    "userType":"SuperAdmin"
     }
 *
 * @apiExample {curl} Example usage:
@@ -260,7 +204,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
 }
 */
   //api to add Admin
-  userRouter.post("/addAdmin", authenticateToken, userCtrl.addUser);
+  userRouter.post("/addAdmin", authenticateToken, userCtrl.addAdmin);
   /**
     * @api {post} /users/addAdmin Add Admin
     * @apiName AddAdmin
@@ -585,7 +529,7 @@ module.exports = function (app, mongoose, utils, config, constants, upload, logg
    }
    }
     */
-   
+
   //api to edit superadmin data
   userRouter.put("/addSuperAdmin/:userId", authenticateToken, userCtrl.updateUser);
   /**

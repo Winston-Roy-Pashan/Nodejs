@@ -26,10 +26,6 @@ module.exports = function (mongoose) {
             type: String,
             default: 'endUser'
         },
-        isAdmin: {
-            type: Boolean,
-            default: false
-        },
         password: {
             type: String,
         },
@@ -38,6 +34,10 @@ module.exports = function (mongoose) {
         },
         tokenExpiry: {
             type: Date
+        },
+        isExists:{
+            type:Boolean,
+            default:true
         },
         __v: {
             type: Number,
