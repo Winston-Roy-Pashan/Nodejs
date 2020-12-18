@@ -2033,3 +2033,124 @@ info [Wed Dec 16 2020 12:51:30 GMT+0530 (India Standard Time)]  user logged in .
 
 
 
+
+info [Thu Dec 17 2020 12:14:37 GMT+0530 (India Standard Time)]  user logged in .. null
+info [Thu Dec 17 2020 12:15:14 GMT+0530 (India Standard Time)]  user logged in .. null
+
+info [Thu Dec 17 2020 12:24:43 GMT+0530 (India Standard Time)]  user logged in .. {
+  _id: 5fdb00832f30ec229d496525,
+  userType: 'endUser',
+  isExists: true,
+  email: 'mail2winstonroy@yahoo.com',
+  name: 'Roy Pashan',
+  employeeCode: 'MNG002',
+  password: '40741b5b0293bcb802a4dc25e7e675fc489d7bc8',
+  createdAt: 2020-12-17T06:53:55.850Z,
+  updatedAt: 2020-12-17T06:53:55.850Z
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

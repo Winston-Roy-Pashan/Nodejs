@@ -104,8 +104,8 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                 } else {
                     let data = await Questionnaires.addData(questionnaireObj);
                     console.log("________________data", data);
-                    fs.rename(path.join(__dirname, "..", "uploads/") + data.selectParticipantXLSheet, path.join(__dirname, "..", "uploads/") + data._id+'.xlsx', function(err) {
-                        if ( err ) console.log('ERROR: ' + err);
+                    fs.rename(path.join(__dirname, "..", "uploads/") + data.selectParticipantXLSheet, path.join(__dirname, "..", "uploads/") + data._id + '.xlsx', function (err) {
+                        if (err) console.log('ERROR: ' + err);
                     });
                     data = "questionnaire Saved Sucessfully............"
                     return utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
@@ -196,7 +196,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                     console.log("questionnire data.......", data);
                     var mailBody = data.mailBody
 
-                    var datafile = path.join(__dirname, "..", "uploads/") + data._id+'.xlsx';
+                    var datafile = path.join(__dirname, "..", "uploads/") + data._id + '.xlsx';
                     var dataExcel = await utils.readexcelsheet(datafile)
                     console.log("dataExcel...........", dataExcel)
 
@@ -212,6 +212,7 @@ module.exports = function (mongoose, utils, config, constants, logger) {
                             userObj.employeeCode = user.EMPLOYEE_CODE;
                             userObj.password = utils.generatePassword();
                             var userPassword = userObj.password;
+                            userObj.password = await utils.encryptPassword(userObj.password);
                             let data = await Users.addData(userObj);
                             var sub = "Congratulations ,Your account has been created in In-vision";
                             var link = "https://projects.invisionapp.com/d/main?origin=v7#/console/20430572/432692886/preview?scrollOffset=0";
@@ -377,13 +378,10 @@ module.exports = function (mongoose, utils, config, constants, logger) {
     questionnaireCtrl.generateReportQuestionnaire = async function (req, res) {
         if (req.user && req.user.userType === 'Admin') {
             console.log("Downloading user collection");
-
             var questionnaireObj = {};
             if (req.body.questionnaireId) {
                 questionnaireObj.questionnaireId = req.body.questionnaireId;
             }
-
-
             var queryObj = {};
             queryObj.query = {};
 
@@ -393,52 +391,63 @@ module.exports = function (mongoose, utils, config, constants, logger) {
 
             queryObj.selectFields = 'questionnaireId policyAccept';
             let data = await policyStatus.getLists(queryObj);
-            //console.log("policy data..........", data)
-            let groupData = await policyStatus.aggregate([
-                {
-                    $group: {
-                        _id: '$questionnaireId',
-                        count: { $sum: 1 }
-                    }
-                }
-            ]);
-            console.log("---data", groupData)
+            console.log("policy data..........", data)
+
 
             var xlsData = [];
             if (data.length > 0) {
                 data.forEach(element => {
-                    console.log("Current Element------>", element);
-                    console.log("element.questionnareId------>", element.questionnareId);
-                    if(element.questionnaireId == questionnaireObj.questionnaireId){
-                     console.log("Current Element------>", element);
-                    xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Employee_Code": element.userId.employeeCode, "Policy_Id": element.questionnaireId, "Policy_Status": element.policyAccept });
-                }
-            });
+                    if (element.questionnaireId == questionnaireObj.questionnaireId) {
+                       // console.log("Current Element------>", element);
+                        xlsData.push({ "Name": element.userId.name, "E-mail": element.userId.email, "Employee_Code": element.userId.employeeCode, "Policy_Id": element.questionnaireId, "Policy_Status": element.policyAccept });
+                    }
+                });
             }
+
+            // try {
+            //     var xls = json2xls(xlsData);
+            //     fs.writeFile(path.join(__dirname + '/../downloads') + '/' + questionnaireObj.questionnaireId + '.xlsx', xls, 'binary', function (err) {
+            //         res.download(path.join(__dirname + '/../downloads') + '/' + questionnaireObj.questionnaireId + '.xlsx', function (err) {
+            //             if (err) {
+            //                 console.log("Error");
+            //                 console.log(err);
+            //             } else {
+            //                 console.log("Success");
+            //                 //data = "Report Generated Successfully............."
+            //                 //utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
+            //                 // utils.sendCustomError(req, res, "SUCCESS", "SUCCESS")
+            //                 // fs.unlink(path.join(__dirname + '/../downloads') + '/report.xlsx', function (err) {
+            //                 //     if (err) {
+            //                 //         console.error(err);
+            //                 //     }
+            //                 //     console.log('Temp File Delete');
+            //                 // });
+            //             }
+            //         });
+            //     });
+            // } catch (err) {
+            //     console.error(err);
+            // }
+
             try {
                 var xls = json2xls(xlsData);
-                fs.writeFile(path.join(__dirname + '/../downloads') + '/'+questionnaireObj.questionnaireId+'.xlsx', xls, 'binary', function (err) {
-                    res.download(path.join(__dirname + '/../downloads') + '/'+questionnaireObj.questionnaireId+'.xlsx', function (err) {
+                var time = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+                var filename= questionnaireObj.questionnaireId + "-" + time;
+                fs.writeFile(path.join(__dirname + '/../downloads') + '/' + filename + '.xlsx', xls, 'binary', function (err) {
+                    res.download(path.join(__dirname + '/../downloads') + '/' + filename  + '.xlsx', function (err) {
                         if (err) {
                             console.log("Error");
                             console.log(err);
                         } else {
                             console.log("Success");
-                            //data = "Report Generated Successfully............."
-                            //utils.sendResponse(req, res, data, "SUCCESS", "SUCCESS");
-                            // utils.sendCustomError(req, res, "SUCCESS", "SUCCESS")
-                            // fs.unlink(path.join(__dirname + '/../downloads') + '/report.xlsx', function (err) {
-                            //     if (err) {
-                            //         console.error(err);
-                            //     }
-                            //     console.log('Temp File Delete');
-                            // });
                         }
                     });
-                });
+                }
+                )
             } catch (err) {
                 console.error(err);
             }
+
         } else {
             //  utils.sendAuthError(req, res, "NOT_AUTHERIZED", "NOT_AUTHERIZED")
         }
